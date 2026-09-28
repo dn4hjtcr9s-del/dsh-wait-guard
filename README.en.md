@@ -10,11 +10,23 @@ It is a **pure Host-only plugin** — no tools registered, no settings written, 
 
 ## Install
 
+**Straight from GitHub** (no npm account needed; verified in an isolated profile):
+
+```sh
+# track main
+dsh plugin --profile <your-profile> add github:dn4hjtcr9s-del/dsh-wait-guard
+
+# pin a version (reproducible)
+dsh plugin --profile <your-profile> add github:dn4hjtcr9s-del/dsh-wait-guard#v0.1.0
+```
+
+**From npm**, once published — shorter:
+
 ```sh
 dsh plugin --profile <your-profile> add dsh-wait-guard
 ```
 
-Or, in the Web UI: **Plugins → Add plugin** → `dsh-wait-guard`. Installing a bundle activates through HMR; replacing an already-installed package needs a restart to load a fresh module generation.
+Or, in the Web UI: **Plugins → Add plugin** → paste whatever follows `add` above. Installing a bundle activates through HMR; replacing an already-installed package needs a restart to load a fresh module generation.
 
 Uninstall: remove the bundle from the same page, or `dsh plugin --profile <your-profile> remove dsh-wait-guard`.
 

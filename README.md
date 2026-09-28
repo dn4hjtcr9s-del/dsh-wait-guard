@@ -10,11 +10,23 @@
 
 ## 0. 安装（用户）
 
+**从 GitHub 直接安装**（不需要 npm，已在隔离 profile 实测）：
+
+```sh
+# 跟随 main
+dsh plugin --profile <你的 profile> add github:dn4hjtcr9s-del/dsh-wait-guard
+
+# 固定版本（推荐：可复现）
+dsh plugin --profile <你的 profile> add github:dn4hjtcr9s-del/dsh-wait-guard#v0.1.0
+```
+
+**从 npm 安装**（若已发布到 npm，命令更短）：
+
 ```sh
 dsh plugin --profile <你的 profile> add dsh-wait-guard
 ```
 
-或在 Web UI 里：**Plugins → Add plugin** → 填 `dsh-wait-guard`。新装 bundle 会通过 HMR 生效；**替换已安装的包需要重启**才能加载新的模块代。
+或在 Web UI 里：**Plugins → Add plugin** → 把上面 `add` 后面的那一段粘进去即可。新装 bundle 会通过 HMR 生效；**替换已安装的包需要重启**才能加载新的模块代。
 
 卸载：在同一页面移除，或 `dsh plugin --profile <你的 profile> remove dsh-wait-guard`。
 
