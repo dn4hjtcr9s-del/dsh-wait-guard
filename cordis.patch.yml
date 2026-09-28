@@ -1,0 +1,11 @@
+# wait-guard bundle patch.
+#
+# `name` is the plugin package specifier: an installed bundle resolves from the
+# profile's node_modules, exactly like a shipped package resolves from the dsh
+# installation. The row carries the whole configuration; restating a row by id
+# replaces its `config` wholesale rather than merging it.
+- insert:
+    - id: wait-guard
+      name: 'dsh-wait-guard'
+      config:
+        firstWaitMs: 60000

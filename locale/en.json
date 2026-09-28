@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Subagent Wait Guard",
+    "description": "Keeps an Agent's turn open until every subagent it dispatched has settled, and steps aside the moment a message arrives."
+  }
+}

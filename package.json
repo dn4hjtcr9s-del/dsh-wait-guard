@@ -1,0 +1,59 @@
+{
+  "name": "dsh-wait-guard",
+  "version": "0.1.0",
+  "description": "Keep an Agent's turn open until every descendant subagent settles — a pure Host-plane completion gate for DeepSeek Harness.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "subagent",
+    "multi-agent",
+    "orchestration",
+    "turn-stopping",
+    "gate"
+  ],
+  "license": "MIT",
+  "icon": "./icon.svg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dn4hjtcr9s-del/dsh-wait-guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dn4hjtcr9s-del/dsh-wait-guard/issues"
+  },
+  "homepage": "https://github.com/dn4hjtcr9s-del/dsh-wait-guard#readme",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "test": "node test/self-test.mjs && node test/package-shape.mjs"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
