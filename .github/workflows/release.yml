@@ -1,0 +1,53 @@
+# Publish dsh-wait-guard to npm.
+#
+# Preferred path: npm trusted publishing (OIDC) — no tokens, no OTP, nothing that
+# expires. Configure it once on npm:
+#   https://www.npmjs.com/package/dsh-wait-guard/access → Trusted Publisher
+#     Publisher:        GitHub Actions
+#     Organization:     dn4hjtcr9s-del
+#     Repository:       dsh-wait-guard
+#     Workflow name:    release.yml
+#     Environment:      (leave empty)
+#     Allowed actions:  npm publish
+# After that, releasing is just: git tag v0.1.1 && git push origin v0.1.1
+#
+# Until trusted publishing is configured this workflow fails at the publish step
+# (403) and changes nothing.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # required for the OIDC exchange with the npm registry
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      # The test suites are dependency-free by design, so no install step is needed.
+      - name: Test
+        run: npm test
+
+      - name: Check the tag matches the manifest version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::tag v$tag does not match package.json version $version"
+            exit 1
+          fi
+
+      - name: Publish
+        run: npm publish
